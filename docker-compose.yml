@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  server:
+    image: pzserver:latest
+    build:
+      context: ./pzserver
+    ports:
+      - 16261:16261/udp
+      - 16262:16262/udp
+      - 16263:16263/udp
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    volumes:
+     - pzserver_data:/home/steam/pzserver
+     - ./scripts:/home/steam/scripts
+volumes:
+  pzserver_data:
+    external: false
